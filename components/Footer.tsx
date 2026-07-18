@@ -16,13 +16,13 @@ export function Footer() {
               <span className="text-sm font-semibold tracking-tight">42mjj</span>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: "var(--ink-muted)" }}>
-              全球节点云产品销售门户。VPS、裸金属、住宅 IP、CDN——用 LDC 积分预存支付。
+              VPS、裸金属、住宅 IP、CDN。LinuxDo 登录，LDC 预存支付。
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             <div>
-              <p className="mb-3 text-xs font-medium uppercase tracking-wider" style={{ color: "var(--ink-faint)" }}>
+              <p className="mb-3 text-xs font-medium" style={{ color: "var(--ink-faint)" }}>
                 产品
               </p>
               <ul className="space-y-2 text-sm" style={{ color: "var(--ink-secondary)" }}>
@@ -44,7 +44,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="mb-3 text-xs font-medium uppercase tracking-wider" style={{ color: "var(--ink-faint)" }}>
+              <p className="mb-3 text-xs font-medium " style={{ color: "var(--ink-faint)" }}>
                 账户
               </p>
               <ul className="space-y-2 text-sm" style={{ color: "var(--ink-secondary)" }}>
@@ -61,7 +61,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="mb-3 text-xs font-medium uppercase tracking-wider" style={{ color: "var(--ink-faint)" }}>
+              <p className="mb-3 text-xs font-medium " style={{ color: "var(--ink-faint)" }}>
                 社区
               </p>
               <ul className="space-y-2 text-sm" style={{ color: "var(--ink-secondary)" }}>
@@ -85,7 +85,7 @@ export function Footer() {
           style={{ borderColor: "var(--border)", color: "var(--ink-faint)" }}
         >
           <span>© {new Date().getFullYear()} 42mjj · 预存模式 · LDC 结算</span>
-          <span className="font-mono">design rebuild contest</span>
+          <span className="font-mono">LDC · LinuxDo</span>
         </div>
       </div>
     </footer>
