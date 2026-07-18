@@ -58,11 +58,11 @@ export function WalletPanel({ wallet, loading }: Props) {
       <div className="relative px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="micro-label mb-1.5">Wallet · available</p>
+            <p className="mb-1 text-xs" style={{ color: "var(--ink-muted)" }}>
+              钱包余额
+            </p>
             <div className="flex items-baseline gap-2">
-              <span
-                className="balance text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
-              >
+              <span className="text-3xl font-semibold tracking-tight tabular-nums md:text-[2.1rem]">
                 {formatMoney(account.balance)}
               </span>
               <span
@@ -78,8 +78,7 @@ export function WalletPanel({ wallet, loading }: Props) {
             </p>
           </div>
           <div className="flex flex-col items-end gap-1.5">
-            <span className="badge badge-buy">预存全款</span>
-            <span className="badge badge-accent">够付即开通</span>
+            <span className="badge">预存全款</span>
           </div>
         </div>
       </div>
@@ -138,7 +137,7 @@ export function WalletPanel({ wallet, loading }: Props) {
             disabled={busy}
             onClick={recharge}
           >
-            {busy ? "处理中…" : "充值到钱包"}
+            {busy ? "处理中…" : "充值"}
           </button>
         </div>
         {msg && (
