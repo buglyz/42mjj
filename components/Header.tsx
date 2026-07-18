@@ -42,24 +42,15 @@ export function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b backdrop-blur-xl"
+      className="nav-glass sticky top-0 z-50 border-b backdrop-blur-xl"
       style={{
         height: "var(--nav-h)",
-        borderColor: "var(--border)",
-        background: "color-mix(in srgb, var(--bg) 82%, transparent)",
       }}
     >
       <div className="container-page flex h-full items-center justify-between gap-4">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <span
-              className="flex h-8 w-8 items-center justify-center rounded-lg font-mono text-sm font-semibold tracking-tight"
-              style={{
-                background: "var(--accent-soft)",
-                color: "var(--accent-text)",
-                border: "1px solid color-mix(in srgb, var(--accent) 25%, transparent)",
-              }}
-            >
+            <span className="logo-mark flex h-8 w-8 items-center justify-center rounded-lg font-mono text-sm font-semibold tracking-tight">
               42
             </span>
             <span className="text-[15px] font-semibold tracking-tight">

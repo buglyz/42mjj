@@ -10,13 +10,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xs">
             <div className="flex items-center gap-2 mb-3">
-              <span
-                className="flex h-7 w-7 items-center justify-center rounded-md font-mono text-xs font-semibold"
-                style={{
-                  background: "var(--accent-soft)",
-                  color: "var(--accent-text)",
-                }}
-              >
+              <span className="logo-mark flex h-7 w-7 items-center justify-center rounded-md font-mono text-xs font-semibold">
                 42
               </span>
               <span className="text-sm font-semibold tracking-tight">42mjj</span>

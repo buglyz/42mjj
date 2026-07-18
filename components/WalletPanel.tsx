@@ -54,32 +54,26 @@ export function WalletPanel({ wallet, loading }: Props) {
   const { account } = wallet;
 
   return (
-    <div className="surface overflow-hidden">
-      <div
-        className="relative px-5 py-5 md:px-6 md:py-6"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--accent-soft) 0%, transparent 55%)",
-        }}
-      >
+    <div className="surface surface-glow wallet-hero overflow-hidden">
+      <div className="relative px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p
-              className="mb-1 text-xs font-medium uppercase tracking-wider"
-              style={{ color: "var(--ink-faint)" }}
+              className="mb-1 text-xs font-semibold uppercase tracking-wider"
+              style={{ color: "var(--accent-text)" }}
             >
               预存余额
             </p>
             <div className="flex items-baseline gap-2">
               <span
-                className="text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
+                className="text-gradient text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
                 style={{ letterSpacing: "-0.04em" }}
               >
                 {formatMoney(account.balance)}
               </span>
               <span
-                className="text-sm font-medium"
-                style={{ color: "var(--ink-muted)" }}
+                className="text-sm font-semibold"
+                style={{ color: "var(--accent-2)" }}
               >
                 LDC
               </span>
@@ -89,7 +83,10 @@ export function WalletPanel({ wallet, loading }: Props) {
               {formatMoney(account.total_spent)}
             </p>
           </div>
-          <span className="badge badge-accent">100% 预存 · 全款开通</span>
+          <div className="flex flex-wrap gap-1.5">
+            <span className="badge badge-accent">100% 预存</span>
+            <span className="badge badge-violet">全款开通</span>
+          </div>
         </div>
       </div>
 
