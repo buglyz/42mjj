@@ -65,7 +65,7 @@ export default function ProductsPage() {
           商店
         </h1>
         <p className="mt-1 text-sm" style={{ color: "var(--ink-muted)" }}>
-          余额、筛选和商品列表
+          先看余额，再按地区与价格筛选机型 — 规格与库存都在卡片上
         </p>
       </div>
 

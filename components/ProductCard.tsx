@@ -11,6 +11,18 @@ type Props = {
   compact?: boolean;
 };
 
+const REGION_COLOR: Record<string, string> = {
+  香港: "#e03131",
+  美国: "#3b5bdb",
+  德国: "#f08c00",
+  日本: "#d6336c",
+  新加坡: "#0ca678",
+  CDN: "#7048e8",
+  裸金属: "#1098ad",
+  "住宅 IP": "#ae3ec9",
+  全球: "#3b5bdb",
+};
+
 function specPairs(item: CatalogItem): [string, string][] {
   const s = item.spec || {};
   const pairs: [string, string][] = [];
@@ -23,15 +35,16 @@ function specPairs(item: CatalogItem): [string, string][] {
   if (s.bandwidth) pairs.push(["带宽", String(s.bandwidth)]);
   if (s.traffic) pairs.push(["流量", String(s.traffic)]);
   if (s.nodes) pairs.push(["节点", String(s.nodes)]);
-  if (s.ddos) pairs.push(["防护", String(s.ddos)]);
+  if (s.ddos) pairs.push(["DDoS", String(s.ddos)]);
   return pairs.slice(0, 4);
 }
 
-export function ProductCard({ item, compact }: Props) {
+export function ProductCard({ item, featured, compact }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const region = regionFromGroup(item.group_name);
   const soldOut = item.status !== "active" || item.stock <= 0;
+  const accent = REGION_COLOR[region] || "var(--accent)";
   const pairs = specPairs(item);
 
   async function onBuy() {
@@ -65,23 +78,41 @@ export function ProductCard({ item, compact }: Props) {
 
   return (
     <article
-      className={cn("product-card surface flex flex-col")}
-      style={{ padding: compact ? "1rem" : "1.1rem" }}
+      className={cn("product-card surface flex flex-col", featured && "md:col-span-1")}
+      style={
+        {
+          padding: compact ? "1rem 1rem 1rem 1.1rem" : "1.15rem 1.15rem 1.15rem 1.25rem",
+          ["--card-accent" as string]: accent,
+        } as React.CSSProperties
+      }
     >
-      <div className="mb-2 flex items-start justify-between gap-2">
+      <span className="rail" aria-hidden />
+      <div className="mb-2.5 flex items-start justify-between gap-2">
         <div className="flex flex-wrap gap-1.5">
-          <span className="badge badge-accent">{region}</span>
+          <span
+            className="badge"
+            style={{
+              background: `color-mix(in srgb, ${accent} 12%, transparent)`,
+              color: accent,
+              borderColor: `color-mix(in srgb, ${accent} 28%, transparent)`,
+            }}
+          >
+            {region}
+          </span>
           {item.stock > 0 && item.stock <= 5 && (
-            <span className="badge badge-warning">剩 {item.stock}</span>
+            <span className="badge badge-warning">仅剩 {item.stock}</span>
           )}
           {soldOut && <span className="badge badge-danger">售罄</span>}
         </div>
-        <span className="text-[11px]" style={{ color: "var(--ink-faint)" }}>
-          {item.term_months} 个月
+        <span className="font-mono text-[11px]" style={{ color: "var(--ink-faint)" }}>
+          {item.term_months} 月
         </span>
       </div>
 
-      <h3 className="mb-1.5 text-[14.5px] font-semibold leading-snug">
+      <h3
+        className="mb-1.5 text-[15px] font-semibold leading-snug tracking-tight"
+        style={{ letterSpacing: "-0.02em" }}
+      >
         {item.name}
       </h3>
       <p
@@ -111,7 +142,7 @@ export function ProductCard({ item, compact }: Props) {
       )}
 
       <div
-        className="mt-auto flex items-end justify-between gap-3 border-t pt-3"
+        className="price-row mt-auto border-t pt-3.5"
         style={{ borderColor: "var(--border)" }}
       >
         <div>
@@ -120,7 +151,7 @@ export function ProductCard({ item, compact }: Props) {
             <span className="price-unit">LDC</span>
           </div>
           <p className="mt-1 text-[11px]" style={{ color: "var(--ink-faint)" }}>
-            续费 {formatLdc(item.renew_price_ldc)} / 月
+            续费 {formatLdc(item.renew_price_ldc)} LDC / 月
           </p>
         </div>
         <button
@@ -129,7 +160,7 @@ export function ProductCard({ item, compact }: Props) {
           disabled={soldOut || loading}
           onClick={onBuy}
         >
-          {loading ? "…" : soldOut ? "售罄" : "购买"}
+          {loading ? "处理中…" : soldOut ? "已售罄" : "购买"}
         </button>
       </div>
       {error && (
