@@ -58,22 +58,12 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-0.5 md:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors"
-                )}
-                style={{
-                  color: isActive(item.href)
-                    ? "var(--ink)"
-                    : "var(--ink-muted)",
-                  background: isActive(item.href)
-                    ? "var(--bg-muted)"
-                    : "transparent",
-                }}
+                className={cn("nav-link", isActive(item.href) && "active")}
               >
                 {item.label}
               </Link>

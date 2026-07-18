@@ -81,11 +81,12 @@ export function ProductCard({ item, featured, compact }: Props) {
       className={cn("product-card surface flex flex-col", featured && "md:col-span-1")}
       style={
         {
-          padding: compact ? "1rem" : "1.15rem",
+          padding: compact ? "1rem 1rem 1rem 1.1rem" : "1.15rem 1.15rem 1.15rem 1.25rem",
           ["--card-accent" as string]: accent,
         } as React.CSSProperties
       }
     >
+      <span className="rail" aria-hidden />
       <div className="mb-2.5 flex items-start justify-between gap-2">
         <div className="flex flex-wrap gap-1.5">
           <span

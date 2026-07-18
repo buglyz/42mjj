@@ -58,16 +58,10 @@ export function WalletPanel({ wallet, loading }: Props) {
       <div className="relative px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p
-              className="mb-1 text-xs font-semibold uppercase tracking-wider"
-              style={{ color: "var(--accent-text)" }}
-            >
-              钱包 · 可购买额度
-            </p>
+            <p className="micro-label mb-1.5">Wallet · available</p>
             <div className="flex items-baseline gap-2">
               <span
-                className="balance text-3xl font-bold tracking-tight tabular-nums md:text-4xl"
-                style={{ letterSpacing: "-0.04em" }}
+                className="balance text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
               >
                 {formatMoney(account.balance)}
               </span>

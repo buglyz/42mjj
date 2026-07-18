@@ -7,28 +7,21 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const REGIONS: { name: string; color: string }[] = [
-  { name: "香港", color: "#e03131" },
-  { name: "美国", color: "#3b5bdb" },
-  { name: "德国", color: "#f08c00" },
-  { name: "日本", color: "#d6336c" },
-  { name: "新加坡", color: "#0ca678" },
-  { name: "CDN", color: "#7048e8" },
-  { name: "裸金属", color: "#1098ad" },
-  { name: "住宅 IP", color: "#ae3ec9" },
+  { name: "香港", color: "#fa5252" },
+  { name: "美国", color: "#5b6cff" },
+  { name: "德国", color: "#f59f00" },
+  { name: "日本", color: "#e64980" },
+  { name: "新加坡", color: "#12b886" },
+  { name: "CDN", color: "#7950f2" },
+  { name: "裸金属", color: "#15aabf" },
+  { name: "住宅 IP", color: "#be4bdb" },
 ];
 
 const STEPS = [
   { t: "LinuxDo 登录", d: "社区身份接入，服务与钱包统一" },
   { t: "LDC 预存", d: "余额充值后全款开通，无分期" },
-  { t: "选购节点", d: "按地区 / 线路 / 规格筛选下单" },
+  { t: "选购节点", d: "地区 / 线路 / 规格筛选下单" },
   { t: "控制台使用", d: "面板入口与接入码随时可查" },
-];
-
-const TRUST = [
-  { k: "支付", v: "LDC 预存全款" },
-  { k: "身份", v: "LinuxDo" },
-  { k: "开通", v: "余额够即开通" },
-  { k: "品类", v: "VPS / 裸金属 / IP / CDN" },
 ];
 
 export default function HomePage() {
@@ -43,28 +36,27 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="hero-commerce">
-        <div className="container-page py-12 md:py-16">
-          <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+      <section className="hero-modern">
+        <div className="container-page py-12 md:py-16 lg:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
             <div className="animate-fade-up">
-              <div className="mb-4 flex flex-wrap gap-2">
-                <span className="badge badge-accent">LinuxDo · LDC</span>
-                <span className="badge badge-buy">预存全款开通</span>
+              <div className="hero-kicker mb-5">
+                <span className="pulse" aria-hidden>
+                  <i />
+                </span>
+                LinuxDo 登录 · LDC 预存全款
               </div>
-              <h1
-                className="mb-4 text-[2rem] font-semibold leading-[1.12] tracking-tight md:text-4xl lg:text-[2.75rem]"
-                style={{ letterSpacing: "-0.035em", color: "var(--ink)" }}
-              >
-                用 LDC 买全球节点，
-                <br className="hidden sm:block" />
-                从选购到控制台一步到位
+              <h1 className="hero-title mb-4 text-[2.15rem] md:text-5xl lg:text-[3.15rem]">
+                全球节点云产品
+                <br />
+                <span style={{ color: "var(--accent-text)" }}>选得清，买得快</span>
               </h1>
               <p
-                className="mb-7 max-w-lg text-[15px] leading-relaxed md:text-base"
+                className="mb-7 max-w-md text-[15px] leading-relaxed md:text-base"
                 style={{ color: "var(--ink-muted)" }}
               >
-                香港 / 美国 / 德国 / 日本等 VPS、裸金属、住宅 IP 与 CDN。
-                规格清晰、库存可见、价格透明——适合对比后直接下单。
+                VPS、裸金属、住宅 IP、CDN。规格表直出、库存可见、余额可预期——
+                给社区用户做的现代云商店体验。
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <Link href="/products" className="btn btn-buy btn-lg">
@@ -89,44 +81,38 @@ export default function HomePage() {
             </div>
 
             <aside className="hero-panel animate-fade-up" style={{ animationDelay: "0.06s" }}>
-              <div className="hero-panel-head">
-                <div className="flex items-center gap-2">
-                  <span className="live-dot" />
-                  <span className="text-sm font-semibold">为什么在这里买</span>
-                </div>
-                <span className="badge badge-accent">社区商店</span>
+              <div className="hero-panel-chrome">
+                <span className="dot" />
+                <span className="dot" />
+                <span className="dot" />
+                <span className="micro-label ml-2" style={{ textTransform: "none", letterSpacing: 0 }}>
+                  store.preview
+                </span>
               </div>
-              <ul className="divide-y" style={{ borderColor: "var(--border)" }}>
-                {[
-                  {
-                    t: "规格先看清",
-                    d: "核数 / 内存 / 硬盘 / 带宽 / 线路标签直接贴在卡片上，不用点进详情才知道。",
-                  },
-                  {
-                    t: "价格好对比",
-                    d: "首购价与续费价同屏展示，按价格排序、按地区筛选，减少来回切换。",
-                  },
-                  {
-                    t: "库存有信号",
-                    d: "低库存角标提示稀缺机型，避免挑完才发现没货。",
-                  },
-                  {
-                    t: "预存可预期",
-                    d: "LDC 钱包余额可见，够付就下单，不够先充值——没有分期欠款噪音。",
-                  },
-                ].map((item) => (
-                  <li key={item.t} className="px-4 py-3.5 md:px-5">
-                    <p className="text-sm font-semibold" style={{ color: "var(--ink)" }}>
-                      {item.t}
-                    </p>
-                    <p className="mt-1 text-[13px] leading-relaxed" style={{ color: "var(--ink-muted)" }}>
-                      {item.d}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-              <div className="border-t p-4 md:p-5" style={{ borderColor: "var(--border)" }}>
-                <Link href="/products" className="btn btn-primary w-full">
+              <div className="p-4 md:p-5">
+                <p className="micro-label mb-3">Why buy here</p>
+                <ul className="space-y-3.5">
+                  {[
+                    ["规格先扫", "核数 / 内存 / 带宽 / 线路同卡展示，减少来回点详情"],
+                    ["价格好比", "首购与续费同屏，支持价格排序与地区筛选"],
+                    ["库存有感", "低库存角标提示稀缺机型"],
+                    ["余额可预期", "够付即开通，不够先充值，无分期噪音"],
+                  ].map(([t, d]) => (
+                    <li key={t} className="flex gap-3">
+                      <span
+                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ background: "var(--accent)" }}
+                      />
+                      <div>
+                        <p className="text-sm font-semibold tracking-tight">{t}</p>
+                        <p className="mt-0.5 text-[13px] leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+                          {d}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/products" className="btn btn-primary mt-5 w-full">
                   去商店看库存与价格
                 </Link>
               </div>
@@ -135,64 +121,80 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="trust-band">
-        <div className="container-page py-10 md:py-12">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+      <section className="container-page py-10 md:py-12">
+        <div className="bento">
+          <div className="bento-tile bento-wide">
+            <p className="micro-label mb-3">Purchase path</p>
+            <h2 className="mb-4 text-lg font-semibold tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+              四步开通
+            </h2>
             <div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider muted">
-                购买路径
-              </p>
-              <h2 className="text-lg font-semibold tracking-tight md:text-xl">
-                四步完成开通
-              </h2>
-            </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs muted">
-              {TRUST.map((t) => (
-                <span key={t.k}>
-                  <span className="opacity-70">{t.k} · </span>
-                  <span style={{ color: "var(--ink-on-dark)" }}>{t.v}</span>
-                </span>
+              {STEPS.map((s, i) => (
+                <div key={s.t} className="step-row">
+                  <span className="step-idx">{i + 1}</span>
+                  <div>
+                    <p className="text-sm font-semibold">{s.t}</p>
+                    <p className="mt-0.5 text-[13px]" style={{ color: "var(--ink-muted)" }}>
+                      {s.d}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <div
-                key={s.t}
-                className="rounded-[var(--radius)] border p-4"
-                style={{
-                  borderColor: "rgba(255,255,255,0.08)",
-                  background: "rgba(255,255,255,0.03)",
-                }}
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="step-num">{i + 1}</span>
-                  <h3 className="text-sm font-semibold">{s.t}</h3>
-                </div>
-                <p className="text-[13px] leading-relaxed muted">{s.d}</p>
-              </div>
-            ))}
+          <div className="bento-tile dark">
+            <p className="micro-label mb-3 muted">Payment</p>
+            <p className="text-2xl font-semibold tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+              LDC 预存
+            </p>
+            <p className="muted mt-2 text-[13px] leading-relaxed">
+              全款开通，余额透明，够付直接下单。
+            </p>
+          </div>
+          <div className="bento-tile">
+            <p className="micro-label mb-3">Identity</p>
+            <p className="text-2xl font-semibold tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+              LinuxDo
+            </p>
+            <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+              社区身份一键登录，服务与钱包同一账户。
+            </p>
+          </div>
+          <div className="bento-tile">
+            <p className="micro-label mb-3">Catalog</p>
+            <p className="text-2xl font-semibold tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+              多区多品类
+            </p>
+            <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+              VPS · 裸金属 · 住宅 IP · CDN
+            </p>
+          </div>
+          <div className="bento-tile" style={{ background: "var(--accent-soft)", borderColor: "var(--accent-border)" }}>
+            <p className="micro-label mb-3" style={{ color: "var(--accent-text)" }}>
+              Activate
+            </p>
+            <p className="text-2xl font-semibold tracking-tight" style={{ letterSpacing: "-0.03em", color: "var(--accent-text)" }}>
+              够付即开通
+            </p>
+            <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "var(--ink-secondary)" }}>
+              无分期欠款流程，减少下单摩擦。
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="container-page py-12 md:py-16">
+      <section className="container-page pb-14 md:pb-20">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
-            <p
-              className="mb-1 text-xs font-semibold uppercase tracking-wider"
-              style={{ color: "var(--accent-text)" }}
-            >
-              精选机型
-            </p>
+            <p className="micro-label mb-2">Featured</p>
             <h2
               className="text-xl font-semibold tracking-tight md:text-2xl"
               style={{ letterSpacing: "-0.03em" }}
             >
-              先看这些再决定
+              先看这些机型
             </h2>
             <p className="mt-1 text-sm" style={{ color: "var(--ink-muted)" }}>
-              覆盖流量云、精品线路、住宅与 CDN 的代表性 SKU
+              覆盖流量云、精品线路、住宅与 CDN
             </p>
           </div>
           <Link href="/products" className="btn btn-secondary btn-sm hidden sm:inline-flex">
