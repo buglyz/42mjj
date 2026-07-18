@@ -1,43 +1,54 @@
 @import "tailwindcss";
 
-/* ===== 42mjj Design System v3 — refined solid =====
-   Single teal accent, no rainbow gradients.
-   Hierarchy via type, space, and quiet surfaces.
+/* ===== 42mjj Design System v4 — cloud commerce =====
+   Research notes (VPS/LDC store conversion):
+   - Buyers scan region → specs → price → stock → CTA
+   - Trust: LinuxDo identity, prepaid LDC, full payment, console access
+   - Avoid rainbow gradients (cheap) and pure monochrome (cold/flat)
+   - Stripe-like: navy ink, one solid brand accent, blue-tinted soft shadows
+   - Rhythm: light canvas + muted panels + one dark trust band
 */
 
 :root {
-  --bg: #f7f8fa;
+  --bg: #f6f8fb;
   --bg-elevated: #ffffff;
-  --bg-muted: #eef0f3;
-  --bg-hover: #e6e9ef;
-  --ink: #0c0f14;
-  --ink-secondary: #3b4250;
-  --ink-muted: #6b7280;
-  --ink-faint: #9ca3af;
-  --border: rgba(15, 23, 42, 0.08);
-  --border-strong: rgba(15, 23, 42, 0.13);
-  --accent: #0f766e;
-  --accent-hover: #0d5f59;
-  --accent-soft: rgba(15, 118, 110, 0.1);
-  --accent-text: #0f766e;
-  --success: #059669;
-  --success-soft: rgba(5, 150, 105, 0.1);
-  --warning: #b45309;
-  --warning-soft: rgba(180, 83, 9, 0.1);
-  --danger: #dc2626;
-  --danger-soft: rgba(220, 38, 38, 0.1);
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --bg-muted: #eef2f7;
+  --bg-hover: #e5ebf3;
+  --bg-dark: #0b1524;
+  --ink: #0b1f33;
+  --ink-secondary: #334e68;
+  --ink-muted: #627d98;
+  --ink-faint: #9fb3c8;
+  --ink-on-dark: #e8eef6;
+  --ink-on-dark-muted: #9db0c7;
+  --border: #d9e2ec;
+  --border-strong: #bcccdc;
+  --accent: #3b5bdb;
+  --accent-hover: #364fc7;
+  --accent-soft: rgba(59, 91, 219, 0.1);
+  --accent-text: #364fc7;
+  --accent-border: rgba(59, 91, 219, 0.28);
+  --buy: #0ca678;
+  --buy-hover: #099268;
+  --buy-soft: rgba(12, 166, 120, 0.12);
+  --success: #0ca678;
+  --success-soft: rgba(12, 166, 120, 0.12);
+  --warning: #f08c00;
+  --warning-soft: rgba(240, 140, 0, 0.12);
+  --danger: #e03131;
+  --danger-soft: rgba(224, 49, 49, 0.1);
+  --shadow-sm: 0 1px 2px rgba(12, 35, 64, 0.04);
   --shadow-md:
-    0 0 0 1px rgba(15, 23, 42, 0.04),
-    0 4px 16px rgba(15, 23, 42, 0.06);
+    0 1px 2px rgba(12, 35, 64, 0.04),
+    0 12px 28px -10px rgba(50, 70, 120, 0.18);
   --shadow-lg:
-    0 0 0 1px rgba(15, 23, 42, 0.05),
-    0 12px 32px rgba(15, 23, 42, 0.08);
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-xs: 6px;
+    0 2px 4px rgba(12, 35, 64, 0.04),
+    0 24px 48px -18px rgba(50, 70, 120, 0.22);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 8px;
   --nav-h: 64px;
-  --max-w: 1120px;
+  --max-w: 1140px;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   color-scheme: light;
@@ -45,33 +56,40 @@
 
 html.dark,
 html[data-theme="dark"] {
-  --bg: #0a0b0e;
-  --bg-elevated: #12141a;
-  --bg-muted: #181b22;
-  --bg-hover: #1f232c;
-  --ink: #f2f4f7;
-  --ink-secondary: #c5cad3;
-  --ink-muted: #8b92a0;
-  --ink-faint: #5c6370;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.12);
-  --accent: #2dd4bf;
-  --accent-hover: #5eead4;
-  --accent-soft: rgba(45, 212, 191, 0.12);
-  --accent-text: #5eead4;
-  --success: #34d399;
-  --success-soft: rgba(52, 211, 153, 0.12);
-  --warning: #fbbf24;
-  --warning-soft: rgba(251, 191, 36, 0.12);
-  --danger: #f87171;
-  --danger-soft: rgba(248, 113, 113, 0.12);
+  --bg: #070b12;
+  --bg-elevated: #0f1520;
+  --bg-muted: #151c2a;
+  --bg-hover: #1b2436;
+  --bg-dark: #05080e;
+  --ink: #eef3f9;
+  --ink-secondary: #c5d0de;
+  --ink-muted: #8b9bb0;
+  --ink-faint: #5c6b80;
+  --ink-on-dark: #eef3f9;
+  --ink-on-dark-muted: #8b9bb0;
+  --border: rgba(160, 180, 210, 0.12);
+  --border-strong: rgba(160, 180, 210, 0.2);
+  --accent: #748ffc;
+  --accent-hover: #91a7ff;
+  --accent-soft: rgba(116, 143, 252, 0.14);
+  --accent-text: #91a7ff;
+  --accent-border: rgba(116, 143, 252, 0.32);
+  --buy: #38d9a9;
+  --buy-hover: #63e6be;
+  --buy-soft: rgba(56, 217, 169, 0.14);
+  --success: #38d9a9;
+  --success-soft: rgba(56, 217, 169, 0.14);
+  --warning: #ffc078;
+  --warning-soft: rgba(255, 192, 120, 0.14);
+  --danger: #ff8787;
+  --danger-soft: rgba(255, 135, 135, 0.14);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-md:
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 8px 24px rgba(0, 0, 0, 0.4);
+    0 0 0 1px rgba(160, 180, 210, 0.06),
+    0 12px 28px rgba(0, 0, 0, 0.4);
   --shadow-lg:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 16px 40px rgba(0, 0, 0, 0.5);
+    0 0 0 1px rgba(160, 180, 210, 0.08),
+    0 20px 48px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
 }
 
@@ -98,7 +116,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv01";
+  font-feature-settings: "ss01", "cv01", "tnum";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -148,6 +166,10 @@ button {
   border-radius: var(--radius);
 }
 
+.surface-lift {
+  box-shadow: var(--shadow-md);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -157,7 +179,7 @@ button {
   padding: 0 1rem;
   border-radius: var(--radius-xs);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
   cursor: pointer;
@@ -166,6 +188,7 @@ button {
     border-color 0.15s ease,
     color 0.15s ease,
     transform 0.12s ease,
+    box-shadow 0.15s ease,
     opacity 0.15s ease;
   white-space: nowrap;
   user-select: none;
@@ -183,26 +206,43 @@ button {
 .btn-primary {
   background: var(--accent);
   color: #fff;
-  font-weight: 600;
+  box-shadow: 0 6px 16px -6px rgba(59, 91, 219, 0.55);
 }
 
 html.dark .btn-primary,
 html[data-theme="dark"] .btn-primary {
-  color: #042f2e;
+  color: #0b1524;
+  box-shadow: 0 6px 18px -6px rgba(116, 143, 252, 0.45);
 }
 
 .btn-primary:hover:not(:disabled) {
   background: var(--accent-hover);
 }
 
+.btn-buy {
+  background: var(--buy);
+  color: #fff;
+  box-shadow: 0 6px 16px -6px rgba(12, 166, 120, 0.5);
+}
+
+html.dark .btn-buy,
+html[data-theme="dark"] .btn-buy {
+  color: #042f2e;
+}
+
+.btn-buy:hover:not(:disabled) {
+  background: var(--buy-hover);
+}
+
 .btn-secondary {
-  background: var(--bg-muted);
+  background: var(--bg-elevated);
   border-color: var(--border-strong);
   color: var(--ink);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--bg-hover);
+  background: var(--bg-muted);
+  border-color: var(--accent-border);
 }
 
 .btn-ghost {
@@ -218,7 +258,6 @@ html[data-theme="dark"] .btn-primary {
 .btn-danger {
   background: var(--danger-soft);
   color: var(--danger);
-  border-color: transparent;
 }
 
 .btn-sm {
@@ -242,7 +281,7 @@ html[data-theme="dark"] .btn-primary {
   padding: 0 0.55rem;
   border-radius: 9999px;
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.01em;
   border: 1px solid var(--border);
   background: var(--bg-muted);
@@ -252,8 +291,14 @@ html[data-theme="dark"] .btn-primary {
 
 .badge-accent {
   background: var(--accent-soft);
-  border-color: transparent;
+  border-color: var(--accent-border);
   color: var(--accent-text);
+}
+
+.badge-buy {
+  background: var(--buy-soft);
+  border-color: transparent;
+  color: var(--buy);
 }
 
 .badge-success {
@@ -342,45 +387,86 @@ html[data-theme="dark"] .btn-primary {
   animation: spin 0.85s linear infinite;
 }
 
-/* Hero: quiet grid, no aurora blobs */
-.hero-mesh {
+/* Hero commerce layout */
+.hero-commerce {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
   border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%, var(--accent-soft), transparent 55%),
+    var(--bg);
 }
 
-.hero-mesh::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(
-    ellipse 70% 55% at 50% -5%,
-    var(--accent-soft),
-    transparent 60%
-  );
-  pointer-events: none;
+.hero-panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
 }
 
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 55% at 50% 30%, black, transparent);
-  opacity: 0.5;
-  pointer-events: none;
+.hero-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-muted);
 }
 
+.live-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--buy);
+  box-shadow: 0 0 0 4px var(--buy-soft);
+}
+
+.trust-band {
+  background: var(--bg-dark);
+  color: var(--ink-on-dark);
+}
+
+.trust-band .muted {
+  color: var(--ink-on-dark-muted);
+}
+
+.step-num {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  flex-shrink: 0;
+}
+
+.trust-band .step-num {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* Product cards — scan for buy */
 .product-card {
+  position: relative;
+  overflow: hidden;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
     border-color 0.18s ease;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--card-accent, var(--accent));
 }
 
 .product-card:hover {
@@ -389,53 +475,112 @@ html[data-theme="dark"] .btn-primary {
   border-color: var(--border-strong);
 }
 
-.highlight-card {
-  transition: border-color 0.15s ease, background 0.15s ease;
+.price-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-.highlight-card:hover {
-  border-color: var(--border-strong);
-  background: var(--bg-elevated);
+.price-main {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.price-unit {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-left: 0.2rem;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 0.6rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+}
+
+.spec-grid dt {
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+.spec-grid dd {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
 }
 
 .region-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.8rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   border: 1px solid var(--border);
   background: var(--bg-elevated);
   color: var(--ink-secondary);
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .region-chip:hover {
-  border-color: var(--border-strong);
-  color: var(--ink);
-  background: var(--bg-muted);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  box-shadow: var(--shadow-sm);
 }
 
 .region-dot {
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.85;
+  background: var(--dot, var(--accent));
 }
 
 .logo-mark {
-  background: var(--accent-soft);
-  color: var(--accent-text);
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+}
+
+html.dark .logo-mark,
+html[data-theme="dark"] .logo-mark {
+  color: #0b1524;
 }
 
 .nav-glass {
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   border-color: var(--border);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+}
+
+.wallet-panel {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-md);
+}
+
+.wallet-panel .balance {
+  color: var(--accent-text);
+}
+
+.filter-chip-active {
+  background: var(--accent-soft) !important;
+  color: var(--accent-text) !important;
+  border-color: var(--accent-border) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

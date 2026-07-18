@@ -60,12 +60,12 @@ export default function ProductsPage() {
       <div className="mb-6 md:mb-8">
         <h1
           className="text-2xl font-semibold tracking-tight md:text-3xl"
-          style={{ letterSpacing: "-0.035em" }}
+          style={{ letterSpacing: "-0.03em" }}
         >
           商店
         </h1>
         <p className="mt-1 text-sm" style={{ color: "var(--ink-muted)" }}>
-          钱包余额、筛选与产品目录
+          先看余额，再按地区与价格筛选机型 — 规格与库存都在卡片上
         </p>
       </div>
 

@@ -54,25 +54,25 @@ export function WalletPanel({ wallet, loading }: Props) {
   const { account } = wallet;
 
   return (
-    <div className="surface overflow-hidden">
+    <div className="surface wallet-panel overflow-hidden">
       <div className="relative px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p
-              className="mb-1 text-xs font-medium uppercase tracking-wider"
-              style={{ color: "var(--ink-faint)" }}
+              className="mb-1 text-xs font-semibold uppercase tracking-wider"
+              style={{ color: "var(--accent-text)" }}
             >
-              预存余额
+              钱包 · 可购买额度
             </p>
             <div className="flex items-baseline gap-2">
               <span
-                className="text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
+                className="balance text-3xl font-bold tracking-tight tabular-nums md:text-4xl"
                 style={{ letterSpacing: "-0.04em" }}
               >
                 {formatMoney(account.balance)}
               </span>
               <span
-                className="text-sm font-medium"
+                className="text-sm font-semibold"
                 style={{ color: "var(--ink-muted)" }}
               >
                 LDC
@@ -83,7 +83,10 @@ export function WalletPanel({ wallet, loading }: Props) {
               {formatMoney(account.total_spent)}
             </p>
           </div>
-          <span className="badge badge-accent">100% 预存 · 全款开通</span>
+          <div className="flex flex-col items-end gap-1.5">
+            <span className="badge badge-buy">预存全款</span>
+            <span className="badge badge-accent">够付即开通</span>
+          </div>
         </div>
       </div>
 
@@ -137,11 +140,11 @@ export function WalletPanel({ wallet, loading }: Props) {
           />
           <button
             type="button"
-            className="btn btn-primary shrink-0"
+            className="btn btn-buy shrink-0"
             disabled={busy}
             onClick={recharge}
           >
-            {busy ? "处理中…" : "充值"}
+            {busy ? "处理中…" : "充值到钱包"}
           </button>
         </div>
         {msg && (
