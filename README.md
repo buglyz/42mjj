@@ -51,3 +51,13 @@ NEXT_PUBLIC_USE_REAL_API=1 npm run dev
 ```
 
 接口约定：`{ code, message, data }`，`credentials: "include"`。
+
+## Cloudflare Pages
+
+- Project: `42mjj` (GitHub `buglyz/42mjj` · branch `main`)
+- Build: `npm install && npm run build`
+- Output: `out` (`next.config` uses `output: "export"`)
+- URLs:
+  - https://42mjj.pages.dev
+  - https://42mjj.fleey.site
+- Push to `main` triggers auto deploy.
