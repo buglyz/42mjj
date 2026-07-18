@@ -99,12 +99,12 @@ export function ProductCard({ item, featured, compact }: Props) {
         <div>
           <div className="flex items-baseline gap-1">
             <span
-              className="text-gradient text-xl font-semibold tracking-tight tabular-nums"
+              className="text-xl font-semibold tracking-tight tabular-nums"
               style={{ letterSpacing: "-0.03em" }}
             >
               {formatLdc(item.price_ldc)}
             </span>
-            <span className="text-xs font-semibold" style={{ color: "var(--accent-2)" }}>
+            <span className="text-xs font-medium" style={{ color: "var(--ink-muted)" }}>
               LDC
             </span>
           </div>

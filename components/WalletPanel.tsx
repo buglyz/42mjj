@@ -54,26 +54,26 @@ export function WalletPanel({ wallet, loading }: Props) {
   const { account } = wallet;
 
   return (
-    <div className="surface surface-glow wallet-hero overflow-hidden">
+    <div className="surface overflow-hidden">
       <div className="relative px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p
-              className="mb-1 text-xs font-semibold uppercase tracking-wider"
-              style={{ color: "var(--accent-text)" }}
+              className="mb-1 text-xs font-medium uppercase tracking-wider"
+              style={{ color: "var(--ink-faint)" }}
             >
               预存余额
             </p>
             <div className="flex items-baseline gap-2">
               <span
-                className="text-gradient text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
+                className="text-3xl font-semibold tracking-tight tabular-nums md:text-4xl"
                 style={{ letterSpacing: "-0.04em" }}
               >
                 {formatMoney(account.balance)}
               </span>
               <span
-                className="text-sm font-semibold"
-                style={{ color: "var(--accent-2)" }}
+                className="text-sm font-medium"
+                style={{ color: "var(--ink-muted)" }}
               >
                 LDC
               </span>
@@ -83,10 +83,7 @@ export function WalletPanel({ wallet, loading }: Props) {
               {formatMoney(account.total_spent)}
             </p>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            <span className="badge badge-accent">100% 预存</span>
-            <span className="badge badge-violet">全款开通</span>
-          </div>
+          <span className="badge badge-accent">100% 预存 · 全款开通</span>
         </div>
       </div>
 
