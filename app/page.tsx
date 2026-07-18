@@ -1,103 +1,134 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { ProductCard } from "@/components/ProductCard";
+import { getCatalog } from "@/lib/api";
+import type { CatalogItem } from "@/lib/types";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const HIGHLIGHTS = [
+  {
+    title: "全球节点",
+    desc: "香港 · 美国 · 德国 · 日本 · 新加坡，CN2 / 9929 / SoftBank 线路可选",
+  },
+  {
+    title: "LDC 预存",
+    desc: "积分全款开通，余额透明可查，无分期欠款干扰",
+  },
+  {
+    title: "LinuxDo 登录",
+    desc: "社区身份一键接入，服务与钱包统一账户管理",
+  },
+];
+
+export default function HomePage() {
+  const [items, setItems] = useState<CatalogItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getCatalog()
+      .then((r) => setItems(r.data.items.slice(0, 4)))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <section className="hero-mesh">
+        <div className="hero-grid" />
+        <div className="container-page pb-16 pt-14 md:pb-24 md:pt-20">
+          <div className="mx-auto max-w-3xl text-center animate-fade-up">
+            <div className="mb-5 inline-flex items-center gap-2">
+              <span className="badge badge-accent">云产品销售门户</span>
+              <span className="badge">预存 · LDC</span>
+            </div>
+            <h1
+              className="mb-5 text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl lg:text-[3.5rem]"
+              style={{ letterSpacing: "-0.045em" }}
+            >
+              全球节点，
+              <span style={{ color: "var(--accent-text)" }}>一站开通</span>
+            </h1>
+            <p
+              className="mx-auto mb-8 max-w-xl text-base leading-relaxed md:text-lg"
+              style={{ color: "var(--ink-muted)" }}
+            >
+              VPS、裸金属、住宅 IP、CDN。用 LinuxDo 登录，LDC 积分预存支付，
+              从选购到控制台一气呵成。
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link href="/products" className="btn btn-primary btn-lg">
+                浏览商店
+              </Link>
+              <Link href="/services" className="btn btn-secondary btn-lg">
+                我的服务
+              </Link>
+            </div>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="mx-auto mt-14 grid max-w-4xl gap-3 sm:grid-cols-3 animate-fade-up" style={{ animationDelay: "0.08s" }}>
+            {HIGHLIGHTS.map((h) => (
+              <div key={h.title} className="surface-muted p-4 text-left md:p-5">
+                <h3
+                  className="mb-1.5 text-sm font-semibold tracking-tight"
+                  style={{ letterSpacing: "-0.02em" }}
+                >
+                  {h.title}
+                </h3>
+                <p className="text-[13px] leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+                  {h.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className="container-page pb-20">
+        <div className="mb-6 flex items-end justify-between gap-4">
+          <div>
+            <h2
+              className="text-xl font-semibold tracking-tight md:text-2xl"
+              style={{ letterSpacing: "-0.03em" }}
+            >
+              精选产品
+            </h2>
+            <p className="mt-1 text-sm" style={{ color: "var(--ink-muted)" }}>
+              代表性节点与规格，完整目录请进入商店
+            </p>
+          </div>
+          <Link
+            href="/products"
+            className="btn btn-ghost btn-sm hidden sm:inline-flex"
+          >
+            查看全部 →
+          </Link>
+        </div>
+
+        {loading ? (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="surface p-5">
+                <div className="skeleton mb-3 h-5 w-16" />
+                <div className="skeleton mb-2 h-5 w-3/4" />
+                <div className="skeleton mb-4 h-10 w-full" />
+                <div className="skeleton h-8 w-full" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((item) => (
+              <ProductCard key={item.store_sku} item={item} compact />
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6 text-center sm:hidden">
+          <Link href="/products" className="btn btn-secondary">
+            查看全部产品
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

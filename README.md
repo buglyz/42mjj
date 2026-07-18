@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 42mjj 前端重构
 
-## Getting Started
+云产品销售门户（VPS / 裸金属 / 住宅 IP / CDN）。LinuxDo 登录 · LDC 预存支付。
 
-First, run the development server:
+## 技术栈
+
+- Next.js 15 (App Router) + React 19 + TypeScript (strict)
+- Tailwind CSS v4 + 自定义 Design Tokens
+- 双主题（浅/深，`localStorage` 持久化）
+- 全量 Mock API，不依赖外部服务器
+
+## 设计系统
+
+- **Surface**：Explore（商店目录）+ Operate（钱包 / 服务）
+- **Accent**：电青绿 teal/cyan（避开通用 indigo/violet）
+- **Typography**：Geist Sans + Geist Mono，紧字距标题
+- **深度**：半透明边框 + 分层阴影，暗色以 luminance 堆叠
+
+## 启动
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 页面
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 路径 | 说明 |
+|------|------|
+| `/` | 首页 Hero + 精选产品 |
+| `/products` | 钱包面板 + 搜索筛选 + 产品网格 |
+| `/services` | 已购服务、续费、控制台、接入码 |
+| `/success?order_no=` | 支付回执轮询 |
 
-## Learn More
+## 结构
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/           layout + pages
+components/    Header / Footer / ProductCard / WalletPanel / AppShell
+lib/           types · mock · api · format · theme
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Mock 切换
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+默认使用 `lib/mock.ts`。若需真实后端：
 
-## Deploy on Vercel
+```bash
+NEXT_PUBLIC_USE_REAL_API=1 npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+接口约定：`{ code, message, data }`，`credentials: "include"`。
